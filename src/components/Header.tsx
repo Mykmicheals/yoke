@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { Transition } from "@headlessui/react";
+import SideBar from "./SideBar";
+import {BiMenuAltRight} from 'react-icons/bi'
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,14 +27,14 @@ function Header() {
                   className="block text-gray-500 hover:text-gray-900 focus:text-gray-900 focus:outline-none"
                   onClick={() => setIsOpen(!isOpen)}
                 >
-                  {/* {!isOpen ? (
+                  {!isOpen ? (
                   <BiMenuAltRight className="w-8 h-8" />
                 ) : (
                   <h2 className=" text-2xl">X</h2>
-                )} */}
+                )}
                 </button>
 
-                {/* <Transition
+                <Transition
                 show={isOpen}
                 enter="transition ease-out duration-200 transform"
                 enterFrom="-translate-x-full"
@@ -44,7 +47,7 @@ function Header() {
                 <div className="w-full h-screen overflow-scroll bg-teal-700">
                   <SideBar />
                 </div>
-              </Transition> */}
+              </Transition>
               </div>
             </div>
           </div>
