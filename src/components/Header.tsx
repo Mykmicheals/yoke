@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Transition } from "@headlessui/react";
 import SideBar from "./SideBar";
 import {BiMenuAltRight} from 'react-icons/bi'
@@ -44,7 +44,7 @@ function Header() {
                 leaveTo="-translate-x-full"
                 className="fixed h-screen overflow-scroll absolute top-0 w-2/3 left-0 z-50 md:hidden"
               >
-                <div className="w-full h-screen overflow-scroll bg-teal-700">
+                <div className="w-full h-screen overflow-scroll bg-[#242426]">
                   <SideBar />
                 </div>
               </Transition>
