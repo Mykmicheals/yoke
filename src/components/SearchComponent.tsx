@@ -8,7 +8,6 @@ function SearchComponent() {
   const [filter, setFilter] = useState("");
   const [showFilter, setShowFilter] = useState(false);
 
-  const [city, setCity] = useState("Lagos");
 
   const dispatch = useDispatch();
 
@@ -32,17 +31,17 @@ function SearchComponent() {
           <FaSearch className="text-gray-400" />
         </div>
         <input
-          className="block w-full rounded-full bg-gray-100 border-transparent focus:border-gray-500  focus:ring-0 pl-10 pr-10 py-1 text-sm placeholder-gray-500 focus:outline-none"
+          className="block w-full rounded-full bg-gray-100 border-transparent focus:border-gray-500  focus:ring-0 pl-10 pr-10 py-3 text-sm placeholder-gray-500 focus:outline-none"
           type="text"
           placeholder="Search for City"
           value={filter}
           onChange={handleFilterChange}
         />
 
-        <div className="absolute top-0 right-0 h-full flex items-center pr-3">
+        <div className="absolute top-0 right-0 h-full flex items-center">
           <button
             onClick={handleSearch}
-            className="px-8 bg-[#E4316F] text-gray-200 rounded-r-full focus:outline-none"
+            className="px-8 bg-[#E4316F] py-2 text-gray-200 rounded-r-full focus:outline-none"
           >
             Search
           </button>
@@ -56,7 +55,6 @@ function SearchComponent() {
               <li
                 onClick={() => {
                   setFilter(city.name);
-                  setCity(city.name);
                   setShowFilter(false);
                   dispatch(setLat(city.lat));
                   dispatch(setLng(city.lng));
