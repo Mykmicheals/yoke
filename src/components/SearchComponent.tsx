@@ -2,18 +2,15 @@ import { useState, ChangeEvent } from "react";
 import cities from "../utils/cities.json";
 import { FaSearch } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { setLat,setLng } from "../Store";
-
+import { setLat, setLng } from "../Store";
 
 function SearchComponent() {
   const [filter, setFilter] = useState("");
   const [showFilter, setShowFilter] = useState(false);
-//   const [lng, setLng] = useState(3.3792);
-//   const [lat, setLat] = useState(6.5244);
-    const [city, setCity] = useState("Lagos");
-    
-    const dispatch = useDispatch()
-    
+
+  const [city, setCity] = useState("Lagos");
+
+  const dispatch = useDispatch();
 
   const filteredCities = cities.filter((city) =>
     city.name.toLowerCase().includes(filter.toLowerCase())
@@ -61,8 +58,8 @@ function SearchComponent() {
                   setFilter(city.name);
                   setCity(city.name);
                   setShowFilter(false);
-                 dispatch( setLat(city.lat))
-                  dispatch(setLng(city.lng))
+                  dispatch(setLat(city.lat));
+                  dispatch(setLng(city.lng));
                 }}
                 key={city.lat}
                 className="py-2 px-3 hover:bg-gray-100"
