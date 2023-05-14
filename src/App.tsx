@@ -1,12 +1,16 @@
-import React from 'react';
+import { Provider } from 'react-redux';
+import Header from './components/Header';
 import HomePage from './pages/HomePage';
+import store from './Store';
 
 
 function App() {
   return (
-    <>
-  <HomePage />
-    </>
+      <Provider store={store}>
+           <Header />
+           <HomePage />
+      </Provider>
+
   );
 }
 
