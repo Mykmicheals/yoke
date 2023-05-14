@@ -10,45 +10,44 @@ function MapComponent() {
   const value = useSelector((state: any) => state.map);
   const [showPopup, setShowPopup] = useState(false);
 
+    const handleMarkerClick = () => {
+    setShowPopup(true);
+  };
 
-console.log(showPopup)
   
+
   return (
     <div className="mt-24 mx-auto w-4/5">
       <Map
         mapStyle="mapbox://styles/mapbox/streets-v9"
         mapboxAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-        style={{ height: "54vh" }}
+        style={{ height: '54vh' }}
         longitude={value.lng}
         latitude={value.lat}
         zoom={10}
       >
         <Marker
           style={{ zIndex: 10 }}
-          onClick={() => setShowPopup(true)}
           longitude={value.lng}
           latitude={value.lat}
           anchor="bottom"
         >
-          <HiLocationMarker className="z-10" size={32} color="red" />
+          <HiLocationMarker  onClick={handleMarkerClick} className="z-10" size={32} color="red" />
         </Marker>
 
-        {showPopup ? (
+        {showPopup && (
           <Popup
-            className="z-1000 bg-red"
+            className=" bg-red"
             longitude={value.lng}
             latitude={value.lat}
-          anchor="bottom"
-          
-            onOpen={() => setShowPopup(false)}
-            onClose={()=>setShowPopup(true)}
+           
+            onClose={() => setShowPopup(false)}
+          closeOnClick={false}
+            anchor="bottom"
           >
-            <WeatherComponent />
+            <WeatherComponent showPopup = {showPopup} />
           </Popup>
-        ) : null}
-        
-
-
+         )} 
       </Map>
     </div>
   );

@@ -2,11 +2,12 @@ import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 
-function WeatherComponent() {
+function WeatherComponent({showPopup}:any) {
     const [forecast, setForecast] = useState<any>();
       const value = useSelector((state: any) => state.map);
 
 
+    
   const weatherApiKey = process.env.REACT_APP_WEATHER_API_KEY;
 
     
@@ -18,13 +19,13 @@ function WeatherComponent() {
       setForecast(data?.daily.slice(0, 2));
   }, [weatherApiKey,value.lat,value.lng]);
 
-//   useEffect(() => {
-//     fetchWeather();
-//   }, [fetchWeather]);
+  useEffect(() => {
+    fetchWeather();
+  }, [fetchWeather]);
 
   return (
     <div>
-      <div className="p-6 z-10">
+    {showPopup &&  <div className="p-6 z-10">
         <h2 className="text-xl font-bold mb-4">Weather Forecast</h2>
         {forecast?.map((day: any, index: number) => (
           <div key={index} className="mb-4">
@@ -45,7 +46,7 @@ function WeatherComponent() {
             </div>
           </div>
         ))}
-      </div>
+      </div>}
     </div>
   );
 }
