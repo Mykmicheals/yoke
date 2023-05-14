@@ -33,31 +33,20 @@ console.log(showPopup)
           <HiLocationMarker className="z-10" size={32} color="red" />
         </Marker>
 
-        {/* {showPopup ? (
+        {showPopup ? (
           <Popup
             className="z-1000 bg-red"
             longitude={value.lng}
             latitude={value.lat}
           anchor="bottom"
           
-            // onOpen={() => setShowPopup(true)}
-            // onClose={()=>setShowPopup(false)}
+            onOpen={() => setShowPopup(false)}
+            onClose={()=>setShowPopup(true)}
           >
             <WeatherComponent />
           </Popup>
         ) : null}
-         */}
-
-
-        <Popup
-            className="z-1000 bg-red"
-            longitude={value.lng}
-            latitude={value.lat}
-          anchor="bottom"
-
-          >
-            <WeatherComponent />
-          </Popup>
+        
 
 
       </Map>
