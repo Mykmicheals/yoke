@@ -19,11 +19,12 @@ function HomePage() {
   );
 
   const handleFilterChange = (event: ChangeEvent<HTMLInputElement>) => {
-
+   setFilter(event.target.value);
+    setShowFilter(true);
   };
 
   const handleSearch = () => {
-
+console.log(filter)
   };
 
 
