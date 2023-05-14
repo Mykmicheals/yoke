@@ -27,17 +27,16 @@ function MapComponent() {
         zoom={10}
       >
         <Marker
-          style={{ zIndex: 10 }}
           longitude={value.lng}
           latitude={value.lat}
           anchor="bottom"
         >
-          <HiLocationMarker  onClick={handleMarkerClick} className="z-10" size={32} color="red" />
+          <HiLocationMarker  onClick={handleMarkerClick} size={32} color="red" />
         </Marker>
 
         {showPopup && (
           <Popup
-            className=" bg-red"
+            className="mt-28"
             longitude={value.lng}
             latitude={value.lat}
            

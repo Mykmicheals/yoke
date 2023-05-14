@@ -49,8 +49,8 @@ function SearchComponent() {
       </div>
 
       {showFilter && (
-        <div className="w-full flex justify-center left-20 absolute z-50 ">
-          <ul className="mt-2 w-1/2 rounded-md bg-white shadow-lg max-h-32 overflow-auto mx-auto">
+        <div className="w-4/5 flex justify-center absolute z-10 ">
+          <ul className="mt-2 w-1/2 rounded-md bg-gray-100 shadow-lg max-h-32 overflow-auto mx-auto">
             {filteredCities?.map((city) => (
               <li
                 onClick={() => {
@@ -60,7 +60,7 @@ function SearchComponent() {
                   dispatch(setLng(city.lng));
                 }}
                 key={city.lat}
-                className="py-2 px-3 hover:bg-gray-100"
+                className="py-2 px-3  hover:bg-gray-100"
               >
                 {city.name}
               </li>
