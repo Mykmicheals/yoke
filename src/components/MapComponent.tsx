@@ -1,4 +1,3 @@
-import React from 'react'
 import Map from 'react-map-gl';
 import { useSelector } from 'react-redux';
 
@@ -6,7 +5,8 @@ import { useSelector } from 'react-redux';
 
 function MapComponent() {
 
-    const value = useSelector((state:any)=>state.map)
+  const value = useSelector((state: any) => state.map)
+  
 
   return (
      <Map
@@ -17,7 +17,8 @@ function MapComponent() {
       }}
       style={{width: 600, height: 400}}
       mapStyle="mapbox://styles/mapbox/streets-v9"
-      
+      mapboxAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+
     />
   )
 }
