@@ -8,6 +8,28 @@ Navigate to the project directory, and run:
 
  `cd yoke `
 
+
+ # Project Structure
+
+- `src/`: Source code directory
+  - `components/`: React components directory
+      - `Header.js`: Header component implementation
+      - `Sidebar.js`: Sidebar component implementation
+      - `SearchComponent.tsx`: Searchbar component 
+      - `MapComponent.tsx` : Component to display Map component
+  - `pages/`: React pages directory
+      - `HomePage.tsx`: Home page component implementation
+      - `Home.css`: CSS styles for the Home page component
+
+- `public/`: Public directory
+  - `index.html`: HTML template file
+  - `favicon.ico`: Favicon icon file
+  - `assets/`: Static assets directory
+    - `images/`: Image files directory
+
+- `package.json`: NPM package configuration file
+- `README.md`: Project README file
+
  Install all depenecies using :
 
 ` yarn install `
@@ -48,3 +70,111 @@ You will also see any lint errors in the console.
 
 <img width="499" alt="sidebar" src="https://github.com/Mykmicheals/yoke/assets/88559940/c359fadf-fa19-40ee-96a9-5188186b9693">
 
+
+
+## The Redex store
+
+
+```
+
+import { createSlice, configureStore } from "@reduxjs/toolkit";
+
+interface sliceTypes {
+  lat: number | null;
+  lng: number | null;
+}
+
+const initialState: sliceTypes = {
+  lat: 40.7128,
+  lng: -74.006,
+};
+
+const mapSlice = createSlice({
+  name: "map",
+  initialState: initialState,
+  reducers: {
+    setLat(state, action) {
+      state.lat = action.payload;
+    },
+    setLng(state, action) {
+      state.lng = action.payload;
+    },
+  },
+});
+
+export const { setLat, setLng } = mapSlice.actions;
+
+const store = configureStore({
+  reducer: {
+    map: mapSlice.reducer,
+  },
+});
+
+type RootState = ReturnType<typeof store.getState>;
+
+export const mapStore = (state: RootState) => state.map;
+
+export default store;
+
+
+```
+
+
+### Fetch Weather Function
+
+``` 
+const fetchWeather = useCallback(async () => {
+     const fetchUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${value.lat}&lon=${value.lng}&exclude=minutely,hourly&units=metric&appid=${weatherApiKey}`
+  setLoading(true);
+  try {
+    const response = await fetch(fetchUrl);
+    if (!response.ok) {
+      throw new Error('Weather data request failed');
+    }
+    const data = await response.json();
+    setForecast(data?.daily.slice(0, 2));
+    setLoading(false);
+  } catch (error) {
+    console.error('Error fetching weather data:', error);
+   alert('error')
+  }
+}, [weatherApiKey, value.lat, value.lng]);
+
+```
+
+### Render Map Logic
+
+```
+
+ <Map
+        mapStyle="mapbox://styles/mapbox/streets-v9"
+        mapboxAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+        style={{ height: '54vh' }}
+        longitude={value.lng}
+        latitude={value.lat}
+        zoom={10}
+      >
+        <Marker
+          longitude={value.lng}
+          latitude={value.lat}
+          anchor="bottom"
+        >
+          <HiLocationMarker  onClick={handleMarkerClick} size={32} color="red" />
+        </Marker>
+
+        {showPopup && (
+          <Popup
+            className="mt-28"
+            longitude={value.lng}
+            latitude={value.lat}
+           
+            onClose={() => setShowPopup(false)}
+          closeOnClick={false}
+            anchor="bottom"
+          >
+            <WeatherComponent showPopup = {showPopup} />
+          </Popup>
+         )} 
+      </Map>
+
+```
