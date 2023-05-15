@@ -1,8 +1,8 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 
-interface sliceTypes{
-    lat: number | null;
-    lng: number | null;
+interface sliceTypes {
+  lat: number | null;
+  lng: number | null;
 }
 
 const initialState: sliceTypes = {
@@ -11,18 +11,17 @@ const initialState: sliceTypes = {
 };
 
 const mapSlice = createSlice({
-    name: 'map',
-    initialState: initialState,
-    reducers: {
-        setLat(state,action) {
-           state.lat = action.payload 
-        },
-        setLng(state,action) {
-          state.lng = action.payload  
-        }
-    }
-})
-
+  name: "map",
+  initialState: initialState,
+  reducers: {
+    setLat(state, action) {
+      state.lat = action.payload;
+    },
+    setLng(state, action) {
+      state.lng = action.payload;
+    },
+  },
+});
 
 export const { setLat, setLng } = mapSlice.actions;
 
@@ -31,7 +30,6 @@ const store = configureStore({
     map: mapSlice.reducer,
   },
 });
-
 
 type RootState = ReturnType<typeof store.getState>;
 

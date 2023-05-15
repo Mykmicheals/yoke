@@ -8,7 +8,6 @@ const SideBar = () => {
   const [selectedCity, setSelectedCity] = useState(cities[0].name);
 
     const dispatch = useDispatch()
-  
     const handleCityClick = (city: any) => {
     dispatch(setLat(city.lat))
    dispatch(setLng(city.lng))

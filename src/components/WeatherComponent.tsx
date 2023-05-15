@@ -7,21 +7,27 @@ function WeatherComponent({showPopup}:any) {
     const [forecast, setForecast] = useState<any>();
     const value = useSelector((state: any) => state.map);
     const [loading,setLoading] = useState(false)
-
-
     
   const weatherApiKey = process.env.REACT_APP_WEATHER_API_KEY;
 
     
-    const fetchWeather = useCallback(async () => {
-      setLoading(true)
-    const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${value.lat}&lon=${value.lng}&exclude=minutely,hourly&units=metric&appid=${weatherApiKey}`
-    );
+  const fetchWeather = useCallback(async () => {
+     const fetchUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${value.lat}&lon=${value.lng}&exclude=minutely,hourly&units=metric&appid=${weatherApiKey}`
+  setLoading(true);
+  try {
+    const response = await fetch(fetchUrl);
+    if (!response.ok) {
+      throw new Error('Weather data request failed');
+    }
     const data = await response.json();
-        setForecast(data?.daily.slice(0, 2));
-        setLoading(false)
-  }, [weatherApiKey,value.lat,value.lng]);
+    setForecast(data?.daily.slice(0, 2));
+    setLoading(false);
+  } catch (error) {
+    console.error('Error fetching weather data:', error);
+   alert('error')
+  }
+}, [weatherApiKey, value.lat, value.lng]);
+
 
   useEffect(() => {
     fetchWeather();
