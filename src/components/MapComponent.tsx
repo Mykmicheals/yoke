@@ -21,7 +21,7 @@ function MapComponent() {
   };
 
   return (
-    <div className="mt-24 mx-auto w-4/5">
+    <div className="mt-16 mx-auto w-4/5">
       <Map
         mapStyle="mapbox://styles/mapbox/streets-v9"
         mapboxAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
@@ -36,7 +36,7 @@ function MapComponent() {
 
         {showPopup && (
           <Popup
-            className="mt-28"
+            className="mt-44 md:mt-28"
             longitude={value.lng}
             latitude={value.lat}
             onClose={() => setShowPopup(false)}

@@ -25,7 +25,7 @@ function SearchComponent() {
   };
 
   return (
-    <div>
+    <div className="mx-4">
       <div className="relative w-full max-w-md mx-auto">
         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
           <FaSearch className="text-gray-400" />

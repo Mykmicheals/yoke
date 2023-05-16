@@ -25,7 +25,6 @@ const SideBar = ({setIsOpen}:any) => {
           return (
             <p
               key={each.name}
-              // onClick={() => handleCityClick(each)}
               onClick={() => { setIsOpen(false); handleCityClick(each) }
  }
               className={`text-gray-300 text-sm pointer mb-2 ${bgStyle} px-6 rounded-lg py-2 hover:cursor-pointer`}
