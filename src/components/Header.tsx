@@ -12,7 +12,7 @@ function Header() {
         {isOpen && (
           <div
             onClick={() => setIsOpen(false)}
-            className="w-1/2 backdrop-brightness-50 h-screen fixed top-0 right-0 z-20"
+            className='w-1/2 backdrop-brightness-50 h-screen fixed top-0 right-0 z-20 md:backdrop-brightness-100'
           ></div>
         )}
 
@@ -45,7 +45,7 @@ function Header() {
                 className="fixed h-screen overflow-scroll absolute top-0 w-2/3 left-0 z-50 md:hidden"
               >
                 <div className="w-full h-screen overflow-scroll bg-[#242426]">
-                  <SideBar />
+                  <SideBar setIsOpen={setIsOpen} />
                 </div>
               </Transition>
               </div>

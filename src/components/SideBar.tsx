@@ -4,7 +4,7 @@ import { setLat,setLng } from "../Store";
 import { useDispatch } from "react-redux";
 
 
-const SideBar = () => {
+const SideBar = ({setIsOpen}:any) => {
   const [selectedCity, setSelectedCity] = useState(cities[0].name);
 
     const dispatch = useDispatch()
@@ -25,7 +25,9 @@ const SideBar = () => {
           return (
             <p
               key={each.name}
-              onClick={() => handleCityClick(each)}
+              // onClick={() => handleCityClick(each)}
+              onClick={() => { setIsOpen(false); handleCityClick(each) }
+ }
               className={`text-gray-300 text-sm pointer mb-2 ${bgStyle} px-6 rounded-lg py-2 hover:cursor-pointer`}
             >
               {each.name}
